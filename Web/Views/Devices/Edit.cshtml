@@ -1,0 +1,40 @@
+@model Web.Models.DeviceViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Edit", "Devices", FormMethod.Post))
+    {
+        <h1>@ViewBag.Title</h1>
+        <div class="mb-3">
+            <label class="form-label">Название объекта</label>
+            @Html.TextBoxFor(Model => Model.Title, new {@class = "form-control", @value = Model.Title})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">IP-адрес</label>
+            @Html.TextBoxFor(Model => Model.Address, new {@class = "form-control", @value = Model.Address})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Описание</label>
+            @Html.TextBoxFor(Model => Model.Description, new {@class = "form-control", @value = Model.Description})
+        </div>
+        <div class="form-check mb-3">
+            @Html.CheckBoxFor(Model => Model.Enabled, new {@class = "form-check-input"})
+            <label class="form-check-label" for="flexCheckDefault">
+                Мониторинг
+            </label>
+        </div>
+        @Html.HiddenFor(@Model => Model.ID, new {@value = @Model.ID});
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+        
+        <div class="mt-3 d-flex flex-column">
+            @Html.ValidationMessageFor(Model => Model.Title, string.Empty, new {@class = "alert-danger"})
+            @Html.ValidationMessageFor(Model => Model.Address, string.Empty, new {@class = "alert-danger"})
+            @Html.ValidationMessageFor(Model => Model.Description, string.Empty, new {@class = "alert-danger"})
+        </div>
+    }
+</div>
+
+

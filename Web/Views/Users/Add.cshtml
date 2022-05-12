@@ -1,0 +1,25 @@
+@model Web.Models.UserViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Add", "Users", FormMethod.Post))
+    {
+        <h1>@ViewBag.Title</h1>
+        <div class="mb-3">
+            <label class="form-label">Логин</label>
+            @Html.TextBoxFor(Model => Model.Login, new {@class = "form-control", @value = Model.Login})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Пароль</label>
+            @Html.TextBoxFor(Model => Model.Password, new {@class = "form-control", @value = Model.Password})
+        </div>
+        <button class="btn btn-primary" type="submit">Добавить</button>
+        <div class="d-flex flex-column mt-3">
+            @Html.ValidationMessageFor(Model => Model.Login, string.Empty, new {@class = "alert-danger"})
+            @Html.ValidationMessageFor(Model => Model.Password, string.Empty, new {@class = "alert-danger"})
+        </div>
+    }
+</div>

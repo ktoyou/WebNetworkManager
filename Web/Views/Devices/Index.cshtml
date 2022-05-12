@@ -1,0 +1,48 @@
+@page
+@using Web.Models
+@model Web.Views.Devices.Index
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="table-responsive w-100">
+    <table class="table table-responsive" style="overflow: scroll; !important;">
+        <thead>
+        <tr>
+            <th class="col">#</th>
+            <th class="col">IP-адрес</th>
+            <th class="col">Название девайса</th>
+            <th class="col">Мониторинг состояния</th>
+            <th class="col">Состояние</th>
+            <th class="col">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (DeviceViewModel device in ViewBag.Devices)
+        {
+            <tr class="@(device.Online && device.Enabled ? "table-success" : "table-warning")">
+                <th class="align-items-center" scope="row">@device.ID</th>
+                <td class="align-items-center">@device.Address</td>
+                <td class="align-items-center">@device.Title</td>
+                <td class="align-items-center">@(device.Enabled ? "Вкл" : "Выкл")</td>
+                <td class="align-items-center">@(device.Online ? "Онлайн" : "Оффлайн")</td>
+                <td class="d-flex">
+                    @using (Html.BeginForm("Edit", "Devices", FormMethod.Get))
+                    {
+                        <a href="/Devices/Edit?id=@device.ID" class="btn btn-primary" style="margin-right: 10px;">Редактировать</a>
+                    }
+                    @using (Html.BeginForm("Delete", "Devices"))
+                    {
+                        <a href="/Devices/Delete?id=@device.ID" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @using(Html.BeginForm("Add", "Devices")) { <button type="submit" type="button" class="btn btn-primary mb-3">Добавить девайс</button> }
+    <div>
+        
+    </div>
+</div>

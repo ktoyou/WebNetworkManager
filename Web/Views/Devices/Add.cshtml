@@ -1,0 +1,31 @@
+@model Web.Models.DeviceViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Add", "Devices", FormMethod.Post))
+    {
+        <h1>@ViewBag.Title</h1>
+        <div class="mb-3">
+            <label class="form-label">Название объекта</label>
+            @Html.TextBoxFor(Model => Model.Title, new {@class = "form-control", @value = Model.Title})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">IP-адрес</label>
+            @Html.TextBoxFor(Model => Model.Address, new {@class = "form-control", @value = Model.Address})
+        </div>
+        <div class="form-check mb-3">
+            @Html.CheckBoxFor(Model => Model.Enabled, new {@class = "form-check-input"})
+            <label class="form-check-label" for="flexCheckDefault">
+                Мониторинг
+            </label>
+        </div>
+        <button class="btn btn-primary" type="submit">Добавить</button>
+        <div class="d-flex flex-column mt-3">
+            @Html.ValidationMessageFor(Model => Model.Title, string.Empty, new {@class = "alert-danger"})
+            @Html.ValidationMessageFor(Model => Model.Address, string.Empty, new {@class = "alert-danger"})
+        </div>
+    }
+</div>

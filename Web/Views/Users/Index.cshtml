@@ -1,0 +1,32 @@
+@using Web.Models
+@model dynamic
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<div class="table-responsive w-100">
+    <table class="table table-responsive" style="overflow: scroll; !important;">
+        <thead>
+        <tr>
+            <th class="col">#</th>
+            <th class="col">Логин</th>
+            <th class="col">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (UserViewModel user in ViewBag.Users)
+        {
+            <tr>
+                <th class="align-items-center" scope="row">@user.ID</th>
+                <td class="align-items-center">@user.Login</td>
+                <td>
+                    <a href="/Users/Delete?id=@user.ID" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @using(Html.BeginForm("Add", "Users")) { <button type="submit" type="button" class="btn btn-primary">Добавить пользователя</button> }
+</div>

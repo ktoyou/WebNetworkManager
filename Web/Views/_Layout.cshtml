@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Панель управления</title>
+  <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css"/>
+  <link href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet" type="text/css"/>
+  <link href="@Url.Content("~/lib/bootstrap/dist/font/bootstrap-icons.css")" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<main>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh; margin-right: 10px">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"></svg>
+      <span class="fs-4">Управление</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-2">
+      <li class="nav-item">
+        <a href="/devices" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Devices" ? "active" : string.Empty)" aria-current="page">
+          <i class="bi bi-wifi me-2"></i>
+          Состояние сети
+        </a>
+      </li>
+    </ul>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/users" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Users" ? "active" : string.Empty)" aria-current="page">
+          <i class="bi bi-people-fill me-2"></i>
+          Пользователи
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <h1 width="32" height="32" class="rounded-circle me-2">@(User.Claims.FirstOrDefault()!.Value[0])</h1>
+        <strong>@(User.Claims.FirstOrDefault()!.Value)</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="/Account/Logout">Выход</a></li>
+      </ul>
+    </div>
+  </div>
+  @RenderBody()
+</main>
+<script src="~/js/site.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
