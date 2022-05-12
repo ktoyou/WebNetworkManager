@@ -28,14 +28,8 @@
                 <td class="align-items-center">@(device.Enabled ? "Вкл" : "Выкл")</td>
                 <td class="align-items-center">@(device.Online ? "Онлайн" : "Оффлайн")</td>
                 <td class="d-flex">
-                    @using (Html.BeginForm("Edit", "Devices", FormMethod.Get))
-                    {
-                        <a href="/Devices/Edit?id=@device.ID" class="btn btn-primary" style="margin-right: 10px;">Редактировать</a>
-                    }
-                    @using (Html.BeginForm("Delete", "Devices"))
-                    {
-                        <a href="/Devices/Delete?id=@device.ID" class="btn btn-danger">Удалить</a>
-                    }
+                    @Html.ActionLink("Редактировать", "Edit", "Devices", new {id = device.ID}, new {@class = "btn btn-primary", @style = "margin-left: 10px;"})
+                    @Html.ActionLink("Удалить", "Delete", "Devices", new {id = device.ID}, new {@class = "btn btn-primary"})
                 </td>
             </tr>
         }

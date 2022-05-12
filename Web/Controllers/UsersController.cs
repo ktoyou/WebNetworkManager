@@ -46,7 +46,7 @@ public class UsersController : Controller
     }
 
     [HttpGet]
-    public IActionResult Add() => View();
+    public IActionResult Add() => View(new UserViewModel());
 
     [HttpPost]
     public async Task<IActionResult> Add(UserViewModel model)
