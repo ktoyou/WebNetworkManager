@@ -21,6 +21,17 @@ uid - имя пользователя.
 
 password - пароль пользователя.
 
+У Web интерфейса есть система авторизации, прежде чем запускать, создайте таблицу с структурой ниже:
+
+```mysql
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    login VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
+);
+```
+
 Асинхронная ICMP пинговалка
 ---------------------------
 https://github.com/ktoyou/AsyncIcmpPinger
