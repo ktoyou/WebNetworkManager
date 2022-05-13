@@ -8,6 +8,8 @@ public class DbApplicationContext : DbContext
     public DbSet<Device> Devices { get; set; }
 
     public DbSet<User> Users { get; set; }
+    
+    public DbSet<Event> Events { get; set; }
 
     public DbApplicationContext(DbConfiguration dbConfiguration)
     {

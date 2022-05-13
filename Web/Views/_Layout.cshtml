@@ -22,6 +22,14 @@
         </a>
       </li>
     </ul>
+    <ul class="nav nav-pills flex-column mb-2">
+      <li class="nav-item">
+        <a href="/events" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Events" ? "active" : string.Empty)" aria-current="page">
+          <i class="bi bi-exclamation-square-fill me-2"></i>
+          События
+        </a>
+      </li>
+    </ul>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="/users" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Users" ? "active" : string.Empty)" aria-current="page">

@@ -1,0 +1,30 @@
+@using Web.Models
+@model Web.Models.EventsViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="table-responsive w-100">
+    <table class="table table-responsive" style="overflow: scroll; !important;">
+        <thead>
+        <tr>
+            <th class="col">#</th>
+            <th class="col">Уровень</th>
+            <th class="col">Сообщение</th>
+            <th class="col">Дата и время</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (EventsViewModel eventsView in ViewBag.Events)
+        {
+            <tr class="table-danger">
+                <th class="align-items-center" scope="row">@eventsView.ID</th>
+                <td class="align-items-center">L @eventsView.Level</td>
+                <td class="align-items-center">@eventsView.Message</td>
+                <td class="align-items-center">@DateTimeOffset.FromUnixTimeSeconds(@eventsView.Begin).ToString("f")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
