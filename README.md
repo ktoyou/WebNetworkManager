@@ -44,8 +44,6 @@ CREATE TABLE events (
 );
 ```
 
-create table events ( id int not null auto_increment, level int not null, event_id varchar(64) not null, message text not null, begin int not null, end int not null, primary key (id));
-
 Асинхронная ICMP пинговалка
 ---------------------------
 https://github.com/ktoyou/AsyncIcmpPinger
