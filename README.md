@@ -31,6 +31,20 @@ CREATE TABLE users (
     PRIMARY KEY(id)
 );
 ```
+Так же создайте таблицу:
+```mysql
+CREATE TABLE events (
+    id INT NOT NULL AUTO_INCREMENT,
+    level INT NOT NULL,
+    event_id VARCHAR(64) NOT NULL,
+    message TEXT NOT NULL,
+    begin INT NOT NULL,
+    end INT NOT NULL,
+    PRIMARY KEY(id)
+);
+```
+
+create table events ( id int not null auto_increment, level int not null, event_id varchar(64) not null, message text not null, begin int not null, end int not null, primary key (id));
 
 Асинхронная ICMP пинговалка
 ---------------------------
