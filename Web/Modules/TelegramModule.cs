@@ -22,10 +22,22 @@ public class TelegramModule : IModule
                 foreach (var e in events)
                 {
                     _bot = new TelegramBotClient(chat.ApiKey);
-                    await _bot.SendTextMessageAsync(new ChatId(chat.ChatID), e.Message);
+                    await TrySendMessageAsync(_bot, chat.ChatID, e.Message);
                 }
             }
-            await Task.Delay(300000);
+            await Task.Delay(5000);
+        }
+    }
+
+    public async Task TrySendMessageAsync(ITelegramBotClient _bot, long chatID, string message)
+    {
+        try
+        {
+            await _bot.SendTextMessageAsync(new ChatId(chatID), message);
+        }
+        catch (Exception e)
+        {
+            //Todo: Exception должен будет попадать в лог, наверное новую вкладку нужно будет
         }
     }
 
