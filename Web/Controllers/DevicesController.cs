@@ -26,14 +26,14 @@ public class DevicesController : Controller
     public async Task<IActionResult> Delete(int id)
     {
         await _deviceMapper.DeleteDeviceAsync(id);
-        return RedirectPermanent("/devices");
+        return RedirectToRoute("default", new {@controller = "Devices", @action = "Index"});
     }
 
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
         var device = await _deviceMapper.GetDeviceAsync(id);
-        return device == null ? RedirectPermanent("/devices") : View(device);
+        return device == null ? RedirectToRoute("default", new {@controller = "Devices", @action = "Index"}) : View(device);
     }
 
     [HttpPost]
@@ -41,7 +41,7 @@ public class DevicesController : Controller
     {
         if (!TryValidateModel(model)) return View(model);
         await _deviceMapper.EditDeviceAsync(model);
-        return RedirectPermanent("/devices");
+        return RedirectToRoute("default", new {@controller = "Devices", @action = "Index"});
     }
 
     

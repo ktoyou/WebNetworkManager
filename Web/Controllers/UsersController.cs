@@ -25,7 +25,7 @@ public class UsersController : Controller
     public async Task<IActionResult> Delete(int id)
     {
         await _userMapper.DeleteUserAsync(id);
-        return RedirectPermanent("/users");
+        return RedirectToRoute("default", new { @controller = "Users", @action = "Index" });
     }
 
     [HttpGet]
@@ -36,7 +36,7 @@ public class UsersController : Controller
     {
         if (!TryValidateModel(model)) return View(model);
         await _userMapper.AddUserAsync(model);
-        return RedirectPermanent("/users");
+        return RedirectToRoute("default", new { @controller = "Users", @action = "Index" });
     }
     
     private readonly UserMapper _userMapper;

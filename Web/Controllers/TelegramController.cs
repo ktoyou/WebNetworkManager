@@ -24,7 +24,7 @@ public class TelegramController : Controller
     public async Task<IActionResult> Edit(int id)
     {
         var chat = await _telegramChatMapper.GetTelegramChatAsync(id);
-        return chat == null ? RedirectPermanent("/telegram") : View(chat);
+        return chat == null ? RedirectToRoute("default", new {@controller = "Telegram", @action = "Index"}) : View(chat);
     }
     
     [HttpPost]
@@ -32,7 +32,7 @@ public class TelegramController : Controller
     {
         if (!TryValidateModel(model)) return View(model);
         await _telegramChatMapper.AddTelegramChatAsync(model);
-        return RedirectPermanent("/telegram");
+        return RedirectToRoute("default", new {@controller = "Telegram", @action = "Index"});
     }
     
     [HttpPost]
@@ -40,13 +40,13 @@ public class TelegramController : Controller
     {
         if (!TryValidateModel(model)) return View(model);
         await _telegramChatMapper.EditTelegramChatAsync(model);
-        return RedirectPermanent("/telegram");
+        return RedirectToRoute("default", new {@controller = "Telegram", @action = "Index"});
     }
 
     public async Task<IActionResult> Delete(int id)
     {
         await _telegramChatMapper.DeleteTelegramChatAsync(id);
-        return RedirectPermanent("/telegram");
+        return RedirectToRoute("default", new {@controller = "Telegram", @action = "Index"});
     }
     
     private readonly TelegramChatMapper _telegramChatMapper;
