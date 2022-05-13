@@ -21,7 +21,7 @@ uid - имя пользователя.
 
 password - пароль пользователя.
 
-У Web интерфейса есть система авторизации, прежде чем запускать, создайте таблицу с структурой ниже:
+Для корректной работы приложения, создайте таблицы со структурами ниже:
 
 ```mysql
 CREATE TABLE users (
@@ -30,9 +30,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
-```
-Так же создайте таблицу:
-```mysql
+
 CREATE TABLE events (
     id INT NOT NULL AUTO_INCREMENT,
     level INT NOT NULL,
@@ -40,6 +38,14 @@ CREATE TABLE events (
     message TEXT NOT NULL,
     begin INT NOT NULL,
     end INT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE telegram_chats (
+    id INT NOT NULL AUTO_INCREMENT,
+    chat_id INT UNSIGNED NOT NULL,
+    api_key VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 ```
