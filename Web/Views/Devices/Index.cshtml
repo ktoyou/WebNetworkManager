@@ -28,8 +28,8 @@
                 <td class="align-items-center">@(device.Enabled ? "Вкл" : "Выкл")</td>
                 <td class="align-items-center">@(device.Online ? "Онлайн" : "Оффлайн")</td>
                 <td class="d-flex">
-                    @Html.ActionLink("Редактировать", "Edit", "Devices", new {id = device.ID}, new {@class = "btn btn-primary", @style = "margin-left: 10px;"})
-                    @Html.ActionLink("Удалить", "Delete", "Devices", new {id = device.ID}, new {@class = "btn btn-primary"})
+                    @Html.ActionLink("Редактировать", "Edit", "Devices", new {id = device.ID}, new {@class = "btn btn-primary", @style = "margin-right: 10px;"})
+                    @Html.ActionLink("Удалить", "Delete", "Devices", new {id = device.ID}, new {@class = "btn btn-danger"})
                 </td>
             </tr>
         }

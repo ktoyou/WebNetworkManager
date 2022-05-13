@@ -22,7 +22,7 @@
                 <th class="align-items-center" scope="row">@user.ID</th>
                 <td class="align-items-center">@user.Login</td>
                 <td>
-                    <a href="/Users/Delete?id=@user.ID" class="btn btn-danger">Удалить</a>
+                    @Html.ActionLink("Удалить", "Delete", "Users", new {id = @user.ID}, new {@class = "btn btn-danger"})
                 </td>
             </tr>
         }
