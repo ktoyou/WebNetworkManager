@@ -4,17 +4,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Web.Mappers;
 using Web.Models;
 using Web.Models.DB;
-using Web.Tools;
 
 namespace Web.Controllers;
 
 public class AccountController : Controller
 {
-    public AccountController(DbApplicationContext dbApplicationContext)
+    public AccountController(DbApplicationContext dbApplicationContext, UserMapper userMapper)
     {
         _dbApplicationContext = dbApplicationContext;
+        _userMapper = userMapper;
     }
     
     [AllowAnonymous]
@@ -30,18 +31,12 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(UserViewModel model)
     {
         if (!TryValidateModel(model)) return View(model);
-        
-        model.Password = UserTools.HashUserPassword(model.Password);
-        var user = await _dbApplicationContext.Users
-                .Where(user => user.Login == model.Login && user.Password == model.Password)
-                .FirstOrDefaultAsync();
-
-        if (user == null)
+        bool status = await _userMapper.LoginAsync(model);
+        if (!status)
         {
             ModelState.AddModelError("Login", "Неверные логин и/или пароль");
             return View(model);
         }
-        
         await Authenticate(model.Login);
         return Redirect($"~/");
     }
@@ -63,4 +58,5 @@ public class AccountController : Controller
     }
 
     private readonly DbApplicationContext _dbApplicationContext;
+    private readonly UserMapper _userMapper;
 }
