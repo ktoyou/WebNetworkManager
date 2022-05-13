@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Mappers;
 using Web.Models;
 
 namespace Web.Controllers;
 
+[Authorize]
 public class TelegramController : Controller
 {
     public TelegramController(TelegramChatMapper telegramChatMapper)

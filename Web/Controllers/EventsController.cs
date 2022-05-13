@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Web.Mappers;
@@ -6,6 +7,7 @@ using Web.Models.DB;
 
 namespace Web.Controllers;
 
+[Authorize]
 public class EventsController : Controller
 {
     public EventsController(EventMapper eventMapper)
