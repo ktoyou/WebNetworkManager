@@ -1,0 +1,31 @@
+@using System.Net
+@model Web.Models.TelegramChatViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm("Add", "Telegram", WebRequestMethods.Http.Post))
+    {
+        <h1>@ViewBag.Title</h1>
+        <div class="mb-3">
+            <label class="form-label">Название чата</label>
+            @Html.TextBoxFor(Model => Model.Title, new {@class = "form-control", @value = Model.Title})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">API-ключ бота</label>
+            @Html.TextBoxFor(Model => Model.ApiKey, new {@class = "form-control", @value = Model.ApiKey})
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ID чата</label>
+            @Html.TextBoxFor(Model => Model.ChatID, new {@class = "form-control", @value = Model.ChatID})
+        </div>
+        <button class="btn btn-primary" type="submit">Добавить</button>
+        <div class="d-flex flex-column mt-3">
+            @Html.ValidationMessageFor(Model => Model.Title, string.Empty, new {@class = "text-danger"})
+            @Html.ValidationMessageFor(Model => Model.ApiKey, string.Empty, new {@class = "text-danger"})
+            @Html.ValidationMessageFor(Model => Model.ChatID, string.Empty, new {@class = "text-danger"})
+        </div>
+    }
+</div>

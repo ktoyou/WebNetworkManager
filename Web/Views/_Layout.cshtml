@@ -30,6 +30,14 @@
         </a>
       </li>
     </ul>
+    <ul class="nav nav-pills flex-column mb-2">
+      <li class="nav-item">
+        <a href="/telegram" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Telegram" ? "active" : string.Empty)" aria-current="page">
+          <i class="bi bi-telegram me-2"></i>
+          Телеграм чаты
+        </a>
+      </li>
+    </ul>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="/users" class="d-flex nav-link @(ViewContext.RouteData.Values["controller"].ToString() == "Users" ? "active" : string.Empty)" aria-current="page">

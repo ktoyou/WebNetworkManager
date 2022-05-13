@@ -11,9 +11,8 @@ namespace Web.Controllers;
 
 public class UsersController : Controller
 {
-    public UsersController(DbApplicationContext dbApplicationContext, UserMapper userMapper)
+    public UsersController(UserMapper userMapper)
     {
-        _dbApplicationContext = dbApplicationContext;
         _userMapper = userMapper;
     }
 
@@ -39,7 +38,6 @@ public class UsersController : Controller
         await _userMapper.AddUserAsync(model);
         return RedirectPermanent("/users");
     }
-
-    private readonly DbApplicationContext _dbApplicationContext;
+    
     private readonly UserMapper _userMapper;
 }

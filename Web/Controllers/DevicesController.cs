@@ -11,9 +11,8 @@ namespace Web.Controllers;
 [Authorize]
 public class DevicesController : Controller
 {
-    public DevicesController(DbApplicationContext dbApplicationContext, DeviceMapper deviceMapper)
+    public DevicesController(DeviceMapper deviceMapper)
     {
-        _dbApplicationContext = dbApplicationContext;
         _deviceMapper = deviceMapper;
     }
     
@@ -56,8 +55,6 @@ public class DevicesController : Controller
         await _deviceMapper.AddDeviceAsync(model);
         return RedirectToAction("Index");
     }
-
-    private readonly DbApplicationContext _dbApplicationContext;
 
     private readonly DeviceMapper _deviceMapper;
 }

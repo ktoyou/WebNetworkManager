@@ -11,6 +11,7 @@ builder.Services.AddDbContext<DbApplicationContext>();
 builder.Services.AddTransient<DeviceMapper>();
 builder.Services.AddTransient<UserMapper>();
 builder.Services.AddTransient<EventMapper>();
+builder.Services.AddTransient<TelegramChatMapper>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication("Cookies").AddCookie();
 builder.Services.AddAuthorization();

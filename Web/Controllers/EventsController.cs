@@ -8,9 +8,8 @@ namespace Web.Controllers;
 
 public class EventsController : Controller
 {
-    public EventsController(DbApplicationContext dbApplicationContext, EventMapper eventMapper)
+    public EventsController(EventMapper eventMapper)
     {
-        _dbApplicationContext = dbApplicationContext;
         _eventMapper = eventMapper;
     }
 
@@ -21,5 +20,4 @@ public class EventsController : Controller
     }
 
     private readonly EventMapper _eventMapper;
-    private readonly DbApplicationContext _dbApplicationContext;
 }

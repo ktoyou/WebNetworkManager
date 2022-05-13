@@ -11,6 +11,8 @@ public class DbApplicationContext : DbContext
     
     public DbSet<Event> Events { get; set; }
 
+    public DbSet<TelegramChat> TelegramChats { get; set; }
+    
     public DbApplicationContext(DbConfiguration dbConfiguration)
     {
         _dbConfiguration = dbConfiguration;

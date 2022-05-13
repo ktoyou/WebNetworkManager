@@ -1,0 +1,36 @@
+@using Web.Models
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="table-responsive w-100">
+    <table class="table table-responsive" style="overflow: scroll; !important;">
+        <thead>
+        <tr>
+            <th class="col">#</th>
+            <th class="col">Название чата</th>
+            <th class="col">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (TelegramChatViewModel chat in ViewBag.Chats)
+        {
+            <tr class="table-danger">
+                <th class="align-items-center" scope="row">@chat.ID</th>
+                <td class="align-items-center">@chat.Title</td>
+                <td class="align-items-center">
+                    @Html.ActionLink("Редактировать", "Edit", "Telegram", new {@id = chat.ID}, new {@class = "btn btn-primary", @style = "margin-right: 10xp;"})
+                    @Html.ActionLink("Удалить", "Delete", "Telegram", new {@id = chat.ID}, new {@class = "btn btn-danger"})
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    @Html.ActionLink("Добавить", "Add", "Telegram", null, new {@class = "btn btn-primary mb-3"})
+
+    <div class="alert alert-primary" role="alert">
+      Внимание! При добавлении чата в данный раздел, в него будут идти уведомления о каких либо неисправностях.
+    </div>
+</div>

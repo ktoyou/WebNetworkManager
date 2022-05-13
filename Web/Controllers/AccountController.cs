@@ -12,9 +12,8 @@ namespace Web.Controllers;
 
 public class AccountController : Controller
 {
-    public AccountController(DbApplicationContext dbApplicationContext, UserMapper userMapper)
+    public AccountController(UserMapper userMapper)
     {
-        _dbApplicationContext = dbApplicationContext;
         _userMapper = userMapper;
     }
     
@@ -56,7 +55,6 @@ public class AccountController : Controller
         var identity = new ClaimsIdentity(claims, "ApplicationCookie");
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
     }
-
-    private readonly DbApplicationContext _dbApplicationContext;
+    
     private readonly UserMapper _userMapper;
 }
