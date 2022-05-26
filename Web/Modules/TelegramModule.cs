@@ -8,15 +8,16 @@ public class TelegramModule : IModule
 {
     public TelegramModule(DbConfiguration dbConfiguration)
     {
-        _dbApplicationContext = new DbApplicationContext(dbConfiguration);
+        _dbConfiguration = dbConfiguration;
     }
     
     public async Task Run()
     {
         while (true)
         {
-            var chats = _dbApplicationContext.TelegramChats.ToList();
-            var events = _dbApplicationContext.Events.ToList();
+            DbApplicationContext dbApplicationContext = new DbApplicationContext(_dbConfiguration);
+            var chats = dbApplicationContext.TelegramChats.ToList();
+            var events = dbApplicationContext.Events.ToList();
             foreach (var chat in chats)
             {
                 foreach (var e in events)
@@ -43,5 +44,5 @@ public class TelegramModule : IModule
 
     private ITelegramBotClient _bot;
     
-    private readonly DbApplicationContext _dbApplicationContext;
+    private readonly DbConfiguration _dbConfiguration;
 }
