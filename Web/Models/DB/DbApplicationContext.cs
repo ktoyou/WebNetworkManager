@@ -21,7 +21,6 @@ public class DbApplicationContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseMySql($"Server={_dbConfiguration.Server};Database={_dbConfiguration.DataBase};Uid={_dbConfiguration.UID};Pwd={_dbConfiguration.Password};", ServerVersion.Parse("0.0.0"));
-        Database.EnsureCreated();
     }
 
     private readonly DbConfiguration _dbConfiguration;
